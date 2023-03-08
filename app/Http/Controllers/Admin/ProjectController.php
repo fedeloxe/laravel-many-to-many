@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use app\Models\Technology;
 
 
 class ProjectController extends Controller
@@ -30,7 +31,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $techs = Technology::all();
+        return view('admin.projects.create', compact('types', 'techs'));
     }
 
     /**
@@ -44,7 +46,8 @@ class ProjectController extends Controller
         $new = $request->all();
         $slug = Project::generateSlug($request->title);
         $new['slug'] = $slug;
-        Project::create($new);
+        $project = Project::create($new);
+        $project->technologies()->attach($request->technologies);
         return redirect()->route('admin.projects.index');
     }
 
@@ -84,6 +87,7 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($request->title);
         $new['slug'] = $slug;
         $project->update($data);
+        $project->technologies()->sync($request->technologies);
         return redirect()->route('admin.projects.index');
     }
 
