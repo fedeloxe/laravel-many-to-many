@@ -20,7 +20,21 @@
           <td>{{$project->content}}</td>
           <td>{{$project->slug}}</td>
           <td>{{$project['type'] ? $project['type']['name'] : 'nessun tipo'}}</td>
-          <td>{{$project['technology'] ? $project['technology'] : 'nessuna tecnologia'}}</td>
+          <td>
+            {{-- @forelse ($project['technologies'] as $tech)
+                {{ $loop->first ? '' : ',' }}
+                <span>{{ $tech['name'] }}</span>
+            @empty
+                <div>nessuna tech</div>
+            @endforelse --}}
+            @forelse ( $project->technologies as $tech )
+            {{$tech['name']}}
+
+              
+            @empty
+              sophi  
+            @endforelse
+        </td>
           
           <td>
             <div>

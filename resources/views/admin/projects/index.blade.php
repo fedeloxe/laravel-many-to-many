@@ -11,6 +11,7 @@
             <th scope="col">Content</th>
             <th scope="col">Slug</th>
             <th scope="col">type</th>
+            <th scope="col">technology</th>
             <th scope="col">Elimina</th>
             <th scope="col">Modifica</th>
             <th scope="col">Vedi</th>
@@ -24,6 +25,23 @@
               <td>{{$item->content}}</td>
               <td>{{$item->slug}}</td>
               <td>{{$item['type'] ? $item['type']['name'] : 'nessun tipo'}}</td>
+              {{-- <td>
+                @forelse ($item['technologies'] as $tech)
+                    {{ $loop->first ? '' : ',' }}
+                    <span>{{ $tech['name'] }}</span>
+                @empty
+                    <div>nessuna tech</div>
+                @endforelse
+            </td> --}}
+            <td>
+              @forelse ($item->technologies as $tech )
+              {{$tech['name']}}
+
+                
+              @empty
+              sophi 
+              @endforelse
+            </td>
               
               <td>
                 <div>

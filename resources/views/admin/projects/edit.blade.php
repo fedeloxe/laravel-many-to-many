@@ -37,20 +37,61 @@
                       @endforeach
                     </select>
                 </div>
+                {{-- <div class="mb-3">
+                    <label for="" class="form-label">Seleziona technologia</label>
+                    @foreach ($technologies as $item)
+                        <div class="form-check @error('') is-invalid @enderror">
+                            @if ($errors->any())
+                                <input class="form-check-input" type="checkbox" value="{{ $item['id'] }}" name="technologies[]"
+                                    {{ in_array($item['id'], old('technologies', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label">
+                                    {{ $item['name'] }}
+                                </label>
+                            @else
+                                <input class="form-check-input" type="checkbox" value="{{ $item['id'] }}" name="technologies[]"
+                                    {{ $project['technologies']->contains($item) ? 'checked' : '' }}>
+                                <label class="form-check-label">
+                                    {{ $item['name'] }}
+                                </label>
+                            @endif
+                        </div>
+                    @endforeach
+                </div> --}}
                 <div class="mb-3">
                     <label for="" class="form-label">Seleziona tecnologia</label>
-                    <select name="technology_id" id="technology_id">
-                      @foreach ($technologies as $item)
-                      <option value="{{ $item['id']}}" {{$item['id'] == old('technology_id', $project['technology_id']) ? 'selected' : ''}}>{{$item['name']}}</option>
-                      @endforeach
-                    </select>
+                    @foreach ($technologies as $item)
+                    <div class="form-check @error('technologies')
+                    is-invalid
+                    @enderror">
+                    @if ($errors->any())
+                    <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="technologies[]"
+                    {{in_array($item->id,old('technologies',[]))?'checked':''}}>
+                        <label class="form-check-label">
+                            {{ $item['name'] }}
+                        </label>
+                    @else
+                    <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="technologies[]"
+                    {{$project->technologies->contains($item)?'checked':''}}>
+                        <label class="form-check-label">
+                            {{ $item['name'] }}
+                        </label>
+                        
+                    @endif
+
+                        {{-- <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="technologies[]">
+                        <label class="form-check-label">
+                            {{ $item['name'] }}
+                        </label> --}}
+                    </div>
+                @endforeach
                 </div>
+                
 
                 
                 
                 <div class="form-group">
 
-                    <button type="submit" class="btn btn-primary">Crea il nuovo Post</button>
+                    <button type="submit" class="btn btn-primary">Modifica il Post</button>
                 </div>
               </form>
 
