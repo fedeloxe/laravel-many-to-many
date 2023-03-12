@@ -39,7 +39,7 @@
 
                 
               @empty
-              sophi 
+              nessuna tecnologia 
               @endforelse
             </td>
               
