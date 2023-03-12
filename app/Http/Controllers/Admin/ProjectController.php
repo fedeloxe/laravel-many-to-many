@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Models\Type;
-use app\Models\Technology;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
@@ -43,11 +43,14 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $new = $request->all();
+        $new = $request->validated();
         $slug = Project::generateSlug($request->title);
         $new['slug'] = $slug;
         $project = Project::create($new);
-        $project->technologies()->attach($request->technologies);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
+
         return redirect()->route('admin.projects.index');
     }
 
@@ -99,6 +102,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->sync([]);
         $project->delete();
         return redirect()->route('admin.projects.index');
     }

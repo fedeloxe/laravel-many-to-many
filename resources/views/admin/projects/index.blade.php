@@ -24,6 +24,7 @@
               <td>{{$item->content}}</td>
               <td>{{$item->slug}}</td>
               <td>{{$item['type'] ? $item['type']['name'] : 'nessun tipo'}}</td>
+              
               <td>
                 <div>
                   <form action="{{route('admin.projects.destroy', ['project' => $item['slug']] )}}" method="POST">

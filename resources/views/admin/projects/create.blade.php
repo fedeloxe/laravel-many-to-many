@@ -34,7 +34,19 @@
                       <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                       @endforeach
                     </select>
-                  </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Seleziona tecnologia</label>
+                    @foreach ($technologies as $item)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="technologies[]">
+                        <label class="form-check-label">
+                            {{ $item['name'] }}
+                        </label>
+                    </div>
+                @endforeach
+                </div>
                 
                 
                 <div class="form-group">

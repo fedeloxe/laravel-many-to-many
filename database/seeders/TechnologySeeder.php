@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\Technology;
-use Faker\Generator as Faker;
+
 
 class TechnologySeeder extends Seeder
 {
@@ -15,14 +15,14 @@ class TechnologySeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
-
-            $newTechnology = new Technology();
-            $newTechnology->name = $faker->sentence(2);
-            $newTechnology->slug = Str::slug($newTechnology->name, '-');
-            $newTechnology->save();
+        $techs = ['Bootstrap', 'laravel', 'vue + vite', 'javascript', 'CSS', 'HTML', 'Reactjs'];
+        foreach ($techs as $tech) {
+            $newTech = new Technology();
+            $newTech->name = $tech;
+            $newTech->slug = Str::slug($newTech->name, '-');
+            $newTech->save();
         }
     }
 }

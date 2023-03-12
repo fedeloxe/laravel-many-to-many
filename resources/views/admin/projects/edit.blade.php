@@ -36,7 +36,16 @@
                       <option value="{{ $item['id']}}" {{$item['id'] == old('type_id', $project['type_id']) ? 'selected' : ''}}>{{$item['name']}}</option>
                       @endforeach
                     </select>
-                  </div>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Seleziona tecnologia</label>
+                    <select name="technology_id" id="technology_id">
+                      @foreach ($technologies as $item)
+                      <option value="{{ $item['id']}}" {{$item['id'] == old('technology_id', $project['technology_id']) ? 'selected' : ''}}>{{$item['name']}}</option>
+                      @endforeach
+                    </select>
+                </div>
+
                 
                 
                 <div class="form-group">

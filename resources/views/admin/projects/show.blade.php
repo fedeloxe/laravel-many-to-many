@@ -20,6 +20,7 @@
           <td>{{$project->content}}</td>
           <td>{{$project->slug}}</td>
           <td>{{$project['type'] ? $project['type']['name'] : 'nessun tipo'}}</td>
+          <td>{{$project['technology'] ? $project['technology'] : 'nessuna tecnologia'}}</td>
           
           <td>
             <div>
